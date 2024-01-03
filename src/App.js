@@ -56,7 +56,7 @@ const App = () => {
 
   //submitModal and closeModal functions
   const submitModal = (newValue) => {
-    if (modalTitle === "Edit your item") {
+    if (modalTitle === "Edit your name") {
       const newData = [...data];
       newData[currentIndex].name = newValue;
       setData(newData);
