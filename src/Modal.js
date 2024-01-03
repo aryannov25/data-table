@@ -23,8 +23,12 @@ const Modal = ({ showModal, title, content, onSubmit, onCancel }) => {
           />
         )}
         <div className="modal-actions">
-          <button onClick={onCancel}>Cancel</button>
-          <button onClick={() => onSubmit(inputValue)}>Submit</button>
+          <button className="cancel-btn" onClick={onCancel}>
+            Cancel
+          </button>
+          <button className="submit-btn" onClick={() => onSubmit(inputValue)}>
+            Submit
+          </button>
         </div>
       </div>
     </div>

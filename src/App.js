@@ -74,11 +74,12 @@ const App = () => {
       <table>
         <thead>
           <tr>
-            <th></th>
+            <th>SL. No</th>
             <th>Name</th>
             <th>Age</th>
             <th>City</th>
             <th>Pincode</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
