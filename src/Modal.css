@@ -24,7 +24,11 @@
 }
 
 .modal-actions button {
-  margin: 0 8px;
+  cursor: pointer;
+  padding: 5px 10px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 5px;
 }
 
 .modal-input {
@@ -32,4 +36,9 @@
   padding: 8px;
   margin: 10px 0;
   box-sizing: border-box;
+}
+
+.submit-btn{
+  background-color: green;
+  color: white;
 }
