@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+#### Overview
+This React application provides a dynamic table interface with CRUD (Create, Read, Update, Delete) functionalities. The application fetches data from a remote JSON source, displays it in a table format, and allows users to edit or delete table entries through modals.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### Key Features
+1. **Data Fetching:** Automatically fetches data from a remote JSON source on component mount using the `useEffect` hook.
+2. **Dynamic Table Rendering:** Displays the fetched data in a table with columns for Serial Number, Name, Age, City, and Pincode.
+3. **Edit Functionality:** Users can edit the 'name' field of a table entry. This is done through a modal window.
+4. **Delete Functionality:** Users can delete a table entry. A confirmation modal appears before deletion.
+5. **Responsive Modals:** The application uses modals for editing and deletion confirmations, enhancing user interaction.
 
-## Available Scripts
+#### Technology Stack
+- **React:** A JavaScript library for building user interfaces.
+- **useState, useEffect Hooks:** For managing state and side effects in functional components.
+- **CSS:** For styling components.
 
-In the project directory, you can run:
+#### Getting Started
+1. **Clone the Repository:** 
+   ```
+   git clone https://github.com/aryannov25/data-table.git
+   ```
+2. **Install Dependencies:**
+   ```
+   npm install
+   ```
+3. **Run the Application:**
+   ```
+   npm start
+   ```
 
-### `npm start`
+#### Components
+- **App Component:** The main component that renders the table and handles data fetching and state management.
+- **Modal Component:** A reusable modal component for editing and deletion confirmations.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### Functions
+- **fetchData:** Fetches data from the remote JSON source and updates the state.
+- **handleEdit:** Opens the modal for editing a table entry.
+- **handleDelete:** Opens the modal for confirming deletion.
+- **closeModal, resetModalContent:** Functions to close the modal and reset its content.
+- **submitModal:** Submits the changes in case of edit or proceeds with deletion.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### Error Handling
+The application has basic error handling for fetching data from the remote source. In case of an error, it logs an error message to the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
