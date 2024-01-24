@@ -5,13 +5,17 @@ import "./App.css";
 const App = () => {
   const [data, setData] = useState([]);
   const [isModalOpen, setModalOpen] = useState(false);
-  const [modalContent, setModalContent] = useState("");
-  const [modalTitle, setModalTitle] = useState("");
+  const [modalContent, setModalContent] = useState(null);
+  const [modalTitle, setModalTitle] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  // Fetch data on component mount
   useEffect(() => {
+    let isMounted = true;
+
     const fetchData = async () => {
+      setLoading(true);
       try {
         const response = await fetch(
           "https://assets.alippo.com/catalog/static/data.json"
@@ -20,15 +24,24 @@ const App = () => {
           throw new Error(`Error: ${response.status}`);
         }
         const result = await response.json();
-        setData(result);
+        if (isMounted) {
+          setData(result);
+        }
       } catch (error) {
         console.error("Error fetching data", error);
+        setError(error.toString());
+      } finally {
+        setLoading(false);
       }
     };
+
     fetchData();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
-  // Function to handle edit
   const handleEdit = (index) => {
     setModalTitle("Edit your name");
     setModalContent(data[index].name);
@@ -36,7 +49,6 @@ const App = () => {
     setModalOpen(true);
   };
 
-  // Function to handle delete
   const handleDelete = (index) => {
     setModalTitle("Confirm Delete");
     setModalContent("Are you sure you want to delete this item?");
@@ -45,16 +57,14 @@ const App = () => {
   };
 
   const resetModalContent = () => {
-    setModalContent("");
+    setModalContent(null);
   };
 
-  //resetModalContent
   const closeModal = () => {
     setModalOpen(false);
     resetModalContent();
   };
 
-  //submitModal and closeModal functions
   const submitModal = (newValue) => {
     if (modalTitle === "Edit your name") {
       const newData = [...data];
@@ -68,6 +78,20 @@ const App = () => {
     resetModalContent();
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (data.length === 0) {
+    return <div>No data available.</div>;
+  }
+
+  const headers = data.length > 0 ? Object.keys(data[0]) : [];
+
   return (
     <div className="app-container">
       <h1>Table</h1>
@@ -75,10 +99,11 @@ const App = () => {
         <thead>
           <tr>
             <th>SL. No</th>
-            <th>Name</th>
-            <th>Age</th>
-            <th>City</th>
-            <th>Pincode</th>
+            {headers.map((header, index) => (
+              <th key={index}>
+                {header.charAt(0).toUpperCase() + header.slice(1)}
+              </th>
+            ))}
             <th>Actions</th>
           </tr>
         </thead>
@@ -86,11 +111,9 @@ const App = () => {
           {data.map((item, index) => (
             <tr key={index}>
               <td>{index + 1}</td>
-              <td>{item.name || "-"}</td>
-              <td>{item.age || "-"}</td>
-              <td>{item.city || "-"}</td>
-              <td>{item.pinCode || "-"}</td>
-
+              {headers.map((header) => (
+                <td key={header}>{item[header] || "-"}</td>
+              ))}
               <td>
                 <button className="edit-btn" onClick={() => handleEdit(index)}>
                   Edit
